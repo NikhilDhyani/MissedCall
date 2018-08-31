@@ -9,21 +9,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.util.Properties;
-
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import com.example.nikhil.detectcall.MainActivity;
 
 
 /**
@@ -41,7 +27,7 @@ public class MyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        handler = new Handler();
+        final MainActivity mains = new MainActivity();
 
         Bundle extras = intent.getExtras();
 
@@ -73,18 +59,11 @@ public class MyReceiver extends BroadcastReceiver {
         if (wasRinging==1 && wasPicked ==0 && isIdle ==1)
         {
 
-            Toast.makeText(context,"You didn't piclk the call",Toast.LENGTH_LONG).show();
-
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-
-                    sendEmail();
+           Toast.makeText(context,"You didn't pick the call",Toast.LENGTH_LONG).show();
 
 
-                }
-            };
-
+                    Log.d("SendingMail","MailSent");
+                    mains.sendEmail();
 
             wasRinging=0;
             wasPicked=0;
@@ -94,7 +73,7 @@ public class MyReceiver extends BroadcastReceiver {
         if (wasRinging==1 && wasPicked ==1 && isIdle ==1)
         {
 
-            Toast.makeText(context,"Picked  call",Toast.LENGTH_LONG).show();
+            Toast.makeText(context,"Picked call",Toast.LENGTH_LONG).show();
             wasRinging=0;
             wasPicked=0;
             isIdle=0;
@@ -103,52 +82,4 @@ public class MyReceiver extends BroadcastReceiver {
 
     }
 
-
-
-    private void sendEmail() {
-
-        final String username = "email_Id";
-        final String password = "password";
-
-        Properties props = new Properties();
-
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "465");
-
-
-        Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
-        try {
-
-            //Creating MimeMessage object
-            MimeMessage mm = new MimeMessage(session);
-
-            //Setting sender address
-            mm.setFrom(new InternetAddress(username));
-            //Adding receiver
-            mm.addRecipient(Message.RecipientType.TO, new InternetAddress("starcoder017@gmail.com"));
-            //Adding subject
-            mm.setSubject("test");
-            //Adding message
-            mm.setText("msg text");
-
-            //Sending email
-            Transport.send(mm);
-
-            System.out.println("Done");
-            Log.d("DeliveryStatus","successful");
-
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
 }
