@@ -12,15 +12,19 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText sender,pass,receiverEmail;
+    EditText sender, pass, receiverEmail;
     Button btn;
     SharedPreferences sharedpreferences;
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
+
+    public static final String MyPREFERENCES = "MyPrefs";
     public static final String senderE = "SenderEmail";
     public static final String Passw = "Password";
     public static final String receiverE = "ReceiverEmail";
 
+    static String emailx;
+    static String senderx;
+    static String passx;
 
 
     @Override
@@ -33,8 +37,28 @@ public class MainActivity extends AppCompatActivity {
         receiverEmail = findViewById(R.id.ReceiverEmail);
         btn = findViewById(R.id.Btn);
 
+
+        //Code For Shared Preference
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
+        if (sharedpreferences.contains(receiverE)) {
+            receiverEmail.setText(sharedpreferences.getString(receiverE, ""));
+
+            emailx = sharedpreferences.getString(receiverE, ""); // getting String
+            Log.d("ReceiversEmail", emailx);
+        }
+        if (sharedpreferences.contains(senderE)) {
+            sender.setText(sharedpreferences.getString(senderE, ""));
+            senderx = sharedpreferences.getString(senderE, ""); // getting String
+
+
+        }
+        if (sharedpreferences.contains(Passw)) {
+            pass.setText(sharedpreferences.getString(Passw, ""));
+
+            passx = sharedpreferences.getString(Passw, ""); // getting String
+
+        }
 
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -49,33 +73,29 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString(senderE, senderEmail);
                 editor.putString(Passw, password);
                 editor.putString(receiverE, receiver);
+                emailx = receiver;
                 editor.commit();
 
-                Toast.makeText(MainActivity.this,"Details Saved In Your Mobile", Toast.LENGTH_LONG).show();
-
+                Toast.makeText(MainActivity.this, "Details Saved In Your Mobile", Toast.LENGTH_LONG).show();
 
 
             }
         });
 
 
-
     }
 
-    public void sendEmail()
-    {
-
-        String email = sharedpreferences.getString("receiverE", null); // getting String
-
+    public void sendEmail() {
 
         String subject = "Missed Call Alert";
         String message = "Hey You have got a missed call";
+        Log.d("TestEmail", emailx);
 
         //Creating SendMail object
-        SendMail sm = new SendMail(this, email, subject, message);
+        SendMail sm = new SendMail(this, emailx, subject, message,senderx,passx);
 
         //Executing sendmail to send email
         sm.execute();
-        Log.d("After Execute","Executed");
+        Log.d("After Execute", "Executed");
     }
 }

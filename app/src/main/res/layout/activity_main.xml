@@ -22,7 +22,8 @@
         android:layout_below="@+id/SenderEmail"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="71dp"
-        android:hint="Password" />
+        android:hint="Password"
+        android:inputType="textPassword"/>
 
     <EditText
         android:id="@+id/ReceiverEmail"
