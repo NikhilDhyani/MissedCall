@@ -6,8 +6,8 @@ package com.example.nikhil.detectcall.Config;
 
 public class Config {
 
-    public static final String EMAIL ="your-email-id";
-    public static final String PASSWORD ="your-password";
+    public static final String EMAIL ="";
+    public static final String PASSWORD ="";
 
 }
 
