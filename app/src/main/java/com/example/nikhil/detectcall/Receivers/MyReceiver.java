@@ -21,6 +21,7 @@ public class MyReceiver extends BroadcastReceiver {
     private  static int wasRinging =0;
     private  static int wasPicked =0;
     private  static int isIdle =0;
+    private  static String mobileNumber;
 
     Handler handler;
 
@@ -43,6 +44,11 @@ public class MyReceiver extends BroadcastReceiver {
                 Log.d("wasPicked",Integer.toString(wasPicked));
                 Log.d("isIdle",Integer.toString(isIdle));
 
+                Bundle bundle = intent.getExtras();
+                mobileNumber= bundle.getString("incoming_number");
+
+                Log.d("IncomingX",mobileNumber);
+
             }
             if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK))
             {
@@ -63,7 +69,7 @@ public class MyReceiver extends BroadcastReceiver {
 
 
                     Log.d("SendingMail","MailSent");
-                    mains.sendEmail();
+                    mains.sendEmail(mobileNumber);
 
             wasRinging=0;
             wasPicked=0;

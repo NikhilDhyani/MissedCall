@@ -85,10 +85,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void sendEmail() {
+    public void sendEmail(String number) {
 
         String subject = "Missed Call Alert";
-        String message = "Hey You have got a missed call";
+        String message = "Hey You have got a missed call from : "+number;
         Log.d("TestEmail", emailx);
 
         //Creating SendMail object
