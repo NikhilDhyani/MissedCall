@@ -10,9 +10,9 @@
         android:id="@+id/SenderEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="92dp"
+        android:layout_alignStart="@+id/ReceiverEmail"
+        android:layout_below="@+id/tv"
+        android:layout_marginTop="49dp"
         android:hint="Sender Email" />
 
     <EditText
@@ -42,6 +42,16 @@
         android:layout_below="@+id/ReceiverEmail"
         android:layout_marginTop="45dp"
         android:text="Save" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

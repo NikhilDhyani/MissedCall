@@ -30,4 +30,8 @@ dependencies {
 
     compile 'com.sun.mail:android-mail:1.6.2'
     compile 'com.sun.mail:android-activation:1.6.2'
+
+    //Runtime-Permission
+
+    implementation 'com.karumi:dexter:5.0.0'
 }
