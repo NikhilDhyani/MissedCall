@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         if (sharedpreferences.contains(receiverE)) {
             receiverEmail.setText(sharedpreferences.getString(receiverE, ""));
 
-            emailx = sharedpreferences.getString(receiverE, ""); // getting String
+            emailx = sharedpreferences.getString(receiverE, "");
             Log.d("ReceiversEmail", emailx);
         }
         if (sharedpreferences.contains(senderE)) {
