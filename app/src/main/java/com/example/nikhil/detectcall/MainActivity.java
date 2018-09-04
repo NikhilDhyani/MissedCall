@@ -3,6 +3,7 @@ package com.example.nikhil.detectcall;
 import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,16 +22,17 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText sender, pass, receiverEmail;
+    EditText sender, pass, receiverEmail,pin;
     TextView textView;
     Button btn;
-    SharedPreferences sharedpreferences;
+    public  static  SharedPreferences sharedpreferences;
 
 
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String senderE = "SenderEmail";
     public static final String Passw = "Password";
     public static final String receiverE = "ReceiverEmail";
+    public static final String AccessPin = "MasterPin";
 
     static String emailx;
     static String senderx;
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         pass = findViewById(R.id.Email_Password);
         receiverEmail = findViewById(R.id.ReceiverEmail);
         btn = findViewById(R.id.Btn);
+        pin = findViewById(R.id.Mpin);
+
 
         textView = findViewById(R.id.tv);
 
@@ -118,6 +122,12 @@ public class MainActivity extends AppCompatActivity {
             passx = sharedpreferences.getString(Passw, ""); // getting String
 
         }
+        if (sharedpreferences.contains(AccessPin)) {
+            pin.setText(sharedpreferences.getString(AccessPin, ""));
+
+            passx = sharedpreferences.getString(Passw, ""); // getting String
+
+        }
 
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -126,12 +136,14 @@ public class MainActivity extends AppCompatActivity {
                 String senderEmail = sender.getText().toString();
                 String password = pass.getText().toString();
                 String receiver = receiverEmail.getText().toString();
+                String getpin = pin.getText().toString();
 
                 SharedPreferences.Editor editor = sharedpreferences.edit();
 
                 editor.putString(senderE, senderEmail);
                 editor.putString(Passw, password);
                 editor.putString(receiverE, receiver);
+                editor.putString(AccessPin,getpin);
 
                 editor.commit();
 
@@ -145,6 +157,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendEmail(String number) {
+
+      //  emailx = sharedpreferences.getString(receiverE, ""); // getting String
+
+       // sharedpreferences = PreferenceManager
+         //       .getDefaultSharedPreferences(this);
+
+         emailx = this.sharedpreferences.getString(receiverE, "default value");
+
 
         String subject = "Missed Call Alert";
         String message = "Hey You have got a missed call from : " + number;

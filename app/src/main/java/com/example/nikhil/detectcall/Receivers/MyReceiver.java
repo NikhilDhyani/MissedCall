@@ -23,7 +23,6 @@ public class MyReceiver extends BroadcastReceiver {
     private  static int isIdle =0;
     private  static String mobileNumber;
 
-    Handler handler;
 
     @Override
     public void onReceive(Context context, Intent intent) {
