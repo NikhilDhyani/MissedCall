@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     EditText sender, pass, receiverEmail,pin;
     TextView textView;
     Button btn;
+
+    // Shared Preference
     public  static  SharedPreferences sharedpreferences;
 
 
