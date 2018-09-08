@@ -109,25 +109,31 @@ public class MainActivity extends AppCompatActivity {
         if (sharedpreferences.contains(receiverE)) {
             receiverEmail.setText(sharedpreferences.getString(receiverE, ""));
 
-            emailx = sharedpreferences.getString(receiverE, ""); // getting String
+            // Getting Receiver Email Address From Shared Preference
+
+            emailx = sharedpreferences.getString(receiverE, "");
             Log.d("ReceiversEmail", emailx);
         }
         if (sharedpreferences.contains(senderE)) {
             sender.setText(sharedpreferences.getString(senderE, ""));
-            senderx = sharedpreferences.getString(senderE, ""); // getting String
 
+            // Getting Sender Email Address From Shared Preference
+            senderx = sharedpreferences.getString(senderE, "");
 
         }
         if (sharedpreferences.contains(Passw)) {
             pass.setText(sharedpreferences.getString(Passw, ""));
 
-            passx = sharedpreferences.getString(Passw, ""); // getting String
+            // Getting Password From Shared Preference
 
+            passx = sharedpreferences.getString(Passw, "");
         }
         if (sharedpreferences.contains(AccessPin)) {
             pin.setText(sharedpreferences.getString(AccessPin, ""));
 
-            passx = sharedpreferences.getString(Passw, ""); // getting String
+            // Getting Access-Pin From Shared Preference
+
+            passx = sharedpreferences.getString(Passw, "");
 
         }
 
@@ -158,25 +164,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void sendEmail(String number) {
 
-      //  emailx = sharedpreferences.getString(receiverE, ""); // getting String
-
-       // sharedpreferences = PreferenceManager
-         //       .getDefaultSharedPreferences(this);
-
-         emailx = this.sharedpreferences.getString(receiverE, "default value");
-
-
-        String subject = "Missed Call Alert";
-        String message = "Hey You have got a missed call from : " + number;
-
-
-        //Creating SendMail object
-        SendMail sm = new SendMail(this, emailx, subject, message, senderx, passx);
-
-        //Executing sendmail to send email
-        sm.execute();
-        Log.d("After Execute", "Executed");
-    }
 }

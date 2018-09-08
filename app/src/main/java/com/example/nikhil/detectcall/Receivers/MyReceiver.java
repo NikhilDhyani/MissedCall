@@ -47,8 +47,6 @@ public class MyReceiver extends BroadcastReceiver {
                 Bundle bundle = intent.getExtras();
                 mobileNumber= bundle.getString("incoming_number");
 
-                Log.d("IncomingX",mobileNumber);
-
             }
             if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK))
             {
@@ -69,7 +67,6 @@ public class MyReceiver extends BroadcastReceiver {
 
 
                     Log.d("SendingMail","MailSent");
-                   // mains.sendEmail(mobileNumber);
 
             Intent i= new Intent(context, CallService.class);
             i.putExtra("num",mobileNumber);

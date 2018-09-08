@@ -53,12 +53,6 @@ public class CallService extends Service {
             thread.start();
 
         }
-        else
-        if (intent==null){
-            numb = "999999";
-            Log.d("callxx", numb);
-
-        }
 
         return START_STICKY;
 
@@ -122,25 +116,21 @@ public class CallService extends Service {
                 MimeMessage mm = new MimeMessage(session);
 
 
-                Log.d("ReceiverMailX",email);
-                Log.d("PassMailX",password);
-
-
-                Log.d("SenderMailX",senderEmail);
                 //Setting sender address
 
                 mm.setFrom(new InternetAddress(senderEmail));
 
-                //  mm.setFrom(new InternetAddress(senderEmail));
-                //Adding receiver
+                //Adding receiver Email Address
+
                 mm.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+
                 //Adding subject
                 mm.setSubject(subject);
+
                 //Adding message
                 mm.setText(message);
 
                 //Sending email
-
                 Transport.send(mm);
 
             } catch (MessagingException e) {

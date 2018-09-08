@@ -37,7 +37,6 @@ Button vbutton;
 
         if (sharedpreferences.contains(AccessPin)) {
             Toast.makeText(getApplicationContext(),"You have a password",Toast.LENGTH_LONG).show();
-            Log.d("VPassx",AccessPin);
 
         }
         else
@@ -45,8 +44,6 @@ Button vbutton;
                 Toast.makeText(getApplicationContext(),"You dont have a password",Toast.LENGTH_LONG).show();
                 Intent i = new Intent(VerifyPin.this,MainActivity.class);
                 startActivity(i);
-
-
 
             }
 
@@ -63,7 +60,6 @@ Button vbutton;
                     startActivity(i);
 
                     Toast.makeText(getApplicationContext(),"Correct Pin",Toast.LENGTH_LONG).show();
-
 
                 }
                 else
