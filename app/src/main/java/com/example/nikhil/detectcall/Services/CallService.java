@@ -47,18 +47,25 @@ public class CallService extends Service {
 
         if (intent!=null) {
             Bundle bundle =  intent.getExtras();
+<<<<<<< HEAD
             numb = bundle.getString("KEY1");
+=======
+            numb = bundle.getString("num");
+>>>>>>> pin-enter
 
             BackgroundThread thread = new BackgroundThread(numb);
             thread.start();
 
         }
+<<<<<<< HEAD
         else
             if (intent==null){
             numb = "999999";
             Log.d("callxx", numb);
 
         }
+=======
+>>>>>>> pin-enter
 
         return START_STICKY;
 
@@ -122,25 +129,41 @@ public class CallService extends Service {
                 MimeMessage mm = new MimeMessage(session);
 
 
+<<<<<<< HEAD
                 Log.d("ReceiverMailXx",email);
                 Log.d("PassMailXx",password);
 
 
                 Log.d("SenderMailXx",senderEmail);
+=======
+>>>>>>> pin-enter
                 //Setting sender address
 
                 mm.setFrom(new InternetAddress(senderEmail));
 
+<<<<<<< HEAD
                 //  mm.setFrom(new InternetAddress(senderEmail));
                 //Adding receiver
                 mm.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
                 //Adding subject
                 mm.setSubject(subject);
+=======
+                //Adding receiver Email Address
+
+                mm.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+
+                //Adding subject
+                mm.setSubject(subject);
+
+>>>>>>> pin-enter
                 //Adding message
                 mm.setText(message);
 
                 //Sending email
+<<<<<<< HEAD
 
+=======
+>>>>>>> pin-enter
                 Transport.send(mm);
 
             } catch (MessagingException e) {
@@ -148,4 +171,8 @@ public class CallService extends Service {
             }
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> pin-enter

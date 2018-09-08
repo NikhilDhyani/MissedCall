@@ -24,7 +24,6 @@ public class MyReceiver extends BroadcastReceiver {
     private  static int isIdle =0;
     private  static String mobileNumber;
 
-    Handler handler;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -48,8 +47,6 @@ public class MyReceiver extends BroadcastReceiver {
                 Bundle bundle = intent.getExtras();
                 mobileNumber= bundle.getString("incoming_number");
 
-                Log.d("IncomingX",mobileNumber);
-
             }
             if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK))
             {
@@ -70,6 +67,7 @@ public class MyReceiver extends BroadcastReceiver {
 
 
                     Log.d("SendingMail","MailSent");
+<<<<<<< HEAD
 
             // use this to start and trigger a service
             Intent i= new Intent(context, CallService.class);
@@ -78,7 +76,13 @@ public class MyReceiver extends BroadcastReceiver {
             i.putExtra("KEY1",mobileNumber);
             context.startService(i);
             //        mains.sendEmail(mobileNumber);
+=======
+>>>>>>> pin-enter
 
+            Intent i= new Intent(context, CallService.class);
+            i.putExtra("num",mobileNumber);
+
+            context.startService(i);
             wasRinging=0;
             wasPicked=0;
             isIdle=0;

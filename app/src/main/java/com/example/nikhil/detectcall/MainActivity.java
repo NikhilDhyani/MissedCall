@@ -3,6 +3,7 @@ package com.example.nikhil.detectcall;
 import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,9 +24,10 @@ import java.security.PublicKey;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText sender, pass, receiverEmail;
+    EditText sender, pass, receiverEmail,pin;
     TextView textView;
     Button btn;
+<<<<<<< HEAD
     public SharedPreferences sharedpreferences ;//= getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
 //    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -33,12 +35,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     String xo = "nikhildhyani365@gmail.com";
+=======
+
+    // Shared Preference
+    public  static  SharedPreferences sharedpreferences;
+>>>>>>> pin-enter
 
 
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String senderE = "SenderEmail";
     public static final String Passw = "Password";
     public static final String receiverE = "ReceiverEmail";
+    public static final String AccessPin = "MasterPin";
 
     public static String emailx;
     public static String senderx;
@@ -54,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         pass = findViewById(R.id.Email_Password);
         receiverEmail = findViewById(R.id.ReceiverEmail);
         btn = findViewById(R.id.Btn);
+        pin = findViewById(R.id.Mpin);
+
 
         textView = findViewById(R.id.tv);
 
@@ -111,19 +121,34 @@ public class MainActivity extends AppCompatActivity {
         if (sharedpreferences.contains(receiverE)) {
             receiverEmail.setText(sharedpreferences.getString(receiverE, ""));
 
+<<<<<<< HEAD
+=======
+            // Getting Receiver Email Address From Shared Preference
+
+>>>>>>> pin-enter
             emailx = sharedpreferences.getString(receiverE, "");
             Log.d("ReceiversEmail", emailx);
         }
         if (sharedpreferences.contains(senderE)) {
             sender.setText(sharedpreferences.getString(senderE, ""));
-            senderx = sharedpreferences.getString(senderE, ""); // getting String
 
+            // Getting Sender Email Address From Shared Preference
+            senderx = sharedpreferences.getString(senderE, "");
 
         }
         if (sharedpreferences.contains(Passw)) {
             pass.setText(sharedpreferences.getString(Passw, ""));
 
-            passx = sharedpreferences.getString(Passw, ""); // getting String
+            // Getting Password From Shared Preference
+
+            passx = sharedpreferences.getString(Passw, "");
+        }
+        if (sharedpreferences.contains(AccessPin)) {
+            pin.setText(sharedpreferences.getString(AccessPin, ""));
+
+            // Getting Access-Pin From Shared Preference
+
+            passx = sharedpreferences.getString(Passw, "");
 
         }
 
@@ -134,12 +159,14 @@ public class MainActivity extends AppCompatActivity {
                 String senderEmail = sender.getText().toString();
                 String password = pass.getText().toString();
                 String receiver = receiverEmail.getText().toString();
+                String getpin = pin.getText().toString();
 
                 SharedPreferences.Editor editor = sharedpreferences.edit();
 
                 editor.putString(senderE, senderEmail);
                 editor.putString(Passw, password);
                 editor.putString(receiverE, receiver);
+                editor.putString(AccessPin,getpin);
 
                 editor.commit();
 
@@ -152,12 +179,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void sendEmail(String number) {
 
-        String subject = "Missed Call Alert";
-        String message = "Hey You have got a missed call from : " + number;
-
-
+<<<<<<< HEAD
        // sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         String emm =  xo;
@@ -177,4 +200,6 @@ public class MainActivity extends AppCompatActivity {
         sm.execute();
         Log.d("After Execute", "Executed");
     }
+=======
+>>>>>>> pin-enter
 }

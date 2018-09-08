@@ -34,6 +34,14 @@
         android:layout_marginTop="54dp"
         android:hint="Receiver Email" />
 
+    <EditText
+        android:id="@+id/Mpin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv"
+        android:layout_centerHorizontal="true"
+        android:hint="Please Set Your Pin" />
+
     <Button
         android:id="@+id/Btn"
         android:layout_width="wrap_content"
