@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.nikhil.detectcall.MainActivity;
+import com.example.nikhil.detectcall.Services.CallService;
 
 
 /**
@@ -69,7 +70,14 @@ public class MyReceiver extends BroadcastReceiver {
 
 
                     Log.d("SendingMail","MailSent");
-                    mains.sendEmail(mobileNumber);
+
+            // use this to start and trigger a service
+            Intent i= new Intent(context, CallService.class);
+            // potentially add data to the intent
+
+            i.putExtra("KEY1",mobileNumber);
+            context.startService(i);
+            //        mains.sendEmail(mobileNumber);
 
             wasRinging=0;
             wasPicked=0;

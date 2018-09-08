@@ -19,12 +19,20 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import java.security.PublicKey;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText sender, pass, receiverEmail;
     TextView textView;
     Button btn;
-    SharedPreferences sharedpreferences;
+    public SharedPreferences sharedpreferences ;//= getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+//    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+
+
+    String xo = "nikhildhyani365@gmail.com";
 
 
     public static final String MyPREFERENCES = "MyPrefs";
@@ -32,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String Passw = "Password";
     public static final String receiverE = "ReceiverEmail";
 
-    static String emailx;
-    static String senderx;
-    static String passx;
+    public static String emailx;
+    public static String senderx;
+    public static String passx;
 
 
     @Override
@@ -98,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Code For Shared Preference
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
+       sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        Log.d("BossCreate","Checki");
         if (sharedpreferences.contains(receiverE)) {
             receiverEmail.setText(sharedpreferences.getString(receiverE, ""));
 
@@ -150,9 +158,21 @@ public class MainActivity extends AppCompatActivity {
         String message = "Hey You have got a missed call from : " + number;
 
 
-        //Creating SendMail object
-        SendMail sm = new SendMail(this, emailx, subject, message, senderx, passx);
+       // sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
+        String emm =  xo;
+        //Creating SendMail object
+
+        Log.d("Bossb4main","before");
+
+        Log.d("Boss4mainCrash",emm);
+
+//        SendMail sm = new SendMail(this, emailx, subject, message, senderx, passx);
+
+        SendMail sm = new SendMail(this, emailx, subject, message, xo, passx);
+
+        String em = emailx;
+        Log.d("Bossmain",em);
         //Executing sendmail to send email
         sm.execute();
         Log.d("After Execute", "Executed");

@@ -27,6 +27,10 @@
 
             </intent-filter>
         </receiver>
+
+        <service android:name=".Services.CallService"/>
+
+
     </application>
 
 </manifest>

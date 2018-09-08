@@ -2,7 +2,10 @@ package com.example.nikhil.detectcall;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.example.nikhil.detectcall.Config.Config;
 
@@ -15,6 +18,11 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import static com.example.nikhil.detectcall.MainActivity.Passw;
+import static com.example.nikhil.detectcall.MainActivity.passx;
+import static com.example.nikhil.detectcall.MainActivity.senderE;
+import static com.example.nikhil.detectcall.MainActivity.senderx;
 
 /**
  * Created by NIKHIL on 31-08-2018.
@@ -34,8 +42,12 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
     private String senderEmail;
     private String password;
 
+    //SharedPreferences Spreferences ;
+
     //Progressdialog to show while sending email
     private ProgressDialog progressDialog;
+
+
 
     //Class Constructor
     public SendMail(Context context, String email, String subject, String message,String sender,String pass){
@@ -47,11 +59,16 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
 
         this.senderEmail = sender;
         this.password  = pass;
+
+        Log.d("Boss","boss");
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+
+        Log.d("Bosspe","bosspe");
+
 
     }
 
@@ -59,12 +76,22 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
 
+        Log.d("Bosspo","bosspost");
+
     }
 
     @Override
     protected Void doInBackground(Void... params) {
         //Creating properties
         Properties props = new Properties();
+        Log.d("Bossdo","bossdo");
+
+     //   Spreferences =  PreferenceManager.getDefaultSharedPreferences(context);
+
+      //  final String senderxx = Spreferences.getString(senderE, "");
+
+       // final String passxx = Spreferences.getString(Passw, "");
+
 
         //Configuring properties for gmail
         //If you are not using gmail you may need to change the values
@@ -79,7 +106,11 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
                 new javax.mail.Authenticator() {
                     //Authenticating the password
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(senderEmail, password);
+                       return new PasswordAuthentication(senderEmail, password);
+
+                    //    return new PasswordAuthentication(senderxx, passxx);
+
+
                     }
                 });
 
@@ -87,8 +118,12 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
             //Creating MimeMessage object
             MimeMessage mm = new MimeMessage(session);
 
+            Log.d("SenderMailXx",senderEmail);
             //Setting sender address
+
             mm.setFrom(new InternetAddress(senderEmail));
+
+            //  mm.setFrom(new InternetAddress(senderEmail));
             //Adding receiver
             mm.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             //Adding subject
