@@ -27,6 +27,8 @@
         </receiver>
 
         <activity android:name=".MainActivity"></activity>
+
+        <service android:name=".Services.CallService"/>
     </application>
 
 </manifest>

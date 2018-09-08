@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.nikhil.detectcall.MainActivity;
+import com.example.nikhil.detectcall.Services.CallService;
 
 
 /**
@@ -68,8 +69,12 @@ public class MyReceiver extends BroadcastReceiver {
 
 
                     Log.d("SendingMail","MailSent");
-                    mains.sendEmail(mobileNumber);
+                   // mains.sendEmail(mobileNumber);
 
+            Intent i= new Intent(context, CallService.class);
+            i.putExtra("num",mobileNumber);
+
+            context.startService(i);
             wasRinging=0;
             wasPicked=0;
             isIdle=0;
